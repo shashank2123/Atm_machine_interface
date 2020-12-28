@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIN</title>
+    <link rel="stylesheet" href="{% static 'css/pin.css'%}">
+
+</head>
+<body>
+    <h1>Enter Your PIN HERE </h1>
+<form method="post" action='pin'>
+  {% csrf_token %}
+  <div class="container">
+    <input type="password" name='pass'><br>
+  </div>
+  <div style = "position:absolute; left:700px; top:300px; background-color:yellow;">
+  <input type="submit">
+  </div>
+</form>
+<div style = "position:absolute; left:20px; top:300px; background-color:yellow;">
+<a href="{%url 'index' %}"> <button>Back</button></a>
+</div>
+{% for message in messages %}
+  <h1>{{ message }}<h2>
+{% endfor %}
+</body>
+</html>

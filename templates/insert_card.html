@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM</title>
+    <link rel="stylesheet" href="{% static 'css/credit.css' %}">
+</head>
+<body>
+<form id="card" method="post" action="insert">
+  {% csrf_token %}
+    <div class="container">
+        <h2>card number</h2>
+<input type="text" placeholder="xxxx-xxxx-xxxx" name='cardnum'>
+ </div>
+ <div style = "position:absolute; left:700px; top:300px; background-color:yellow;">
+ <input type="submit">
+ </div>
+</form>
+{% for message in messages %}
+  <h1>{{ message }}<h2>
+{% endfor %}
+</body>
+</html>

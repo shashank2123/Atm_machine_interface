@@ -1,0 +1,34 @@
+
+body{
+    background-image: url("../images/credit.jpg");
+ background-size: cover;
+}
+input{
+size: 100px;
+}
+h2{
+    font-size: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: capitalize;
+    text-shadow: blue;
+    color: rgb(17, 15, 15);
+    font-style: oblique;
+}
+div{
+    text-align: center;
+    margin-top: 250px;
+    margin-left: 550px;
+    margin-right: 550px;
+    border-radius: 10px;
+    margin-bottom: 300px;
+    background-color:white;
+    box-sizing: border-box;
+    border: blue;
+    opacity:95%;
+    box-shadow: -30px 30px 20px rgba(0,0,0,0.3);
+    transition: 1s ease-in-out;
+}
+div:hover{
+    background-color: rgb(155, 207, 207);
+   transform: scale(1.5);
+}
