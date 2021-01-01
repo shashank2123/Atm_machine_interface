@@ -7,13 +7,13 @@
 </head>
 <body>
     <p>type of withdrawal</p>
-    <form action="">
-        <button type="submit">
-            saving
-        </button>
+    <form action="withdrawAmmount" method="post">
+        {% csrf_token %}
+        <button type="submit" name='type' value='debit'>saving</button>
+        <button type="submit" name='type' value ='credit'>credit</button>
     </form>
-    <form action=""    >
-        <button type="submit">current</button>
-</form>
+    {% for message in messages %}
+      <h1>{{ message }}<h2>
+    {% endfor %}
 </body>
 </html>

@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import cardDetails,Accounts
+from .models import cardDetails,Accounts,cardType
 from django.contrib import messages
 
 # Create your views here.
@@ -34,3 +34,20 @@ def check_balance(request):
     account_num=cardDetails.objects.all().filter(numCard=num).values_list('idAccount',flat=True)[0]
     account_balance=Accounts.objects.all().filter(pk=account_num).values_list('balance',flat=True)[0]
     return(render(request,'checkbl.html',{'account_balance':account_balance}))
+
+def withdrawType(request):
+    return(render(request,'withdraw.html'))
+
+def withdrawAmmount(request):
+    if request.method=='POST':
+        num=request.session.get('num')
+        type_id=cardDetails.objects.all().filter(numCard=num).values_list('numType_id',flat=True)[0]
+        cardtype=cardType.objects.all().filter(pk=type_id).values_list('type',flat=True)[0]
+        submit_type=request.POST['type']
+        if submit_type=='debit' or cardtype==submit_type:
+            return(render(request,'withamount.html'))
+        elif cardtype=='debit' and submit_type=='credit':
+            messages.warning(request,'Invalid Option')
+            return(render(request,'withdraw.html'))
+    else:
+        return(render(request,'withdraw.html'))
