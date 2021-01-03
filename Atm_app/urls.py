@@ -7,5 +7,7 @@ urlpatterns =[
     path(r'pin',views.pin,name='insert'),
     path(r'check_balance',views.check_balance,name='check_balance'),
     path(r'withdraw',views.withdrawType,name='withdrawType'),
-    path(r'withdrawAmmount',views.withdrawAmmount,name='withdrawType')
+    path(r'withdrawAmmount',views.withdrawAmmount,name='withdrawAmmount'),
+    path(r'pinredirect',views.pinchange_redirect,name='pinredirect'),
+    path(r'pinchange',views.pinchange,name='pinchange'),
 ]

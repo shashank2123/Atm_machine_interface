@@ -7,15 +7,21 @@
 </head>
 <body>
     <h1>pin change</h1>
+<form action="pinchange" method="POST">
+  {% csrf_token %}
     <p>
-enter your new pin
-<input type="password" placeholder="xxxx" >
+enter your new pin</p>
+<input type="password" placeholder="xxxx" name='new_pass'  maxlength="4" minlength="4" pattern="\d{4}" required/>
+<p> Re-Enter
+<input type="password" placeholder="xxxx" name='re_pass' maxlength="4" minlength="4" pattern="\d{4}" required/ >
 
     </p>
-    <form action="submit">
         <p>confirm pin</p>
-        <button type="submit">yes</button>
-        <button type="submit">no</button>
+        <button type="submit">next</button>
     </form>
+<a href="{% url 'index' %}"><button >exit</button> </a>
+{% for message in messages %}
+  <h1>{{ message }}<h2>
+{% endfor %}
 </body>
 </html>

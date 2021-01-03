@@ -51,3 +51,25 @@ def withdrawAmmount(request):
             return(render(request,'withdraw.html'))
     else:
         return(render(request,'withdraw.html'))
+
+def  pinchange_redirect(request):
+    return(render(request,'pchange.html'))
+
+def pinchange(request):
+    if request.method=='POST':
+        new_pass=request.POST['new_pass']
+        re_pass=request.POST['re_pass']
+        if new_pass==re_pass:
+            num=request.session.get('num')
+            old_pass=cardDetails.objects.all().filter(numCard=num).values_list('pin',flat=True)[0]
+            if old_pass!=new_pass:
+                cardDetails.objects.all().filter(numCard=num).update(pin=new_pass)
+                return(render(request,'successful.html'))
+            else:
+                messages.error(request,'New PIN same as old PIN')
+                return(render(request,'pchange.html'))
+        else:
+            messages.error(request,'password not matched')
+            return(render(request,'pchange.html'))
+    else:
+        return(render(request,'pchange.html'))
