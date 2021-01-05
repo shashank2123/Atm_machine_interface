@@ -47,3 +47,7 @@ class transcations(models.Model):
     description=models.CharField(max_length=60)
     tran_time=models.DateTimeField(auto_now_add=True)
     balance=models.FloatField()
+
+class loan(models.Model):
+    accound_id=models.OneToOneField(to=Accounts,on_delete=models.CASCADE,primary_key=True)
+    ammount=models.FloatField()

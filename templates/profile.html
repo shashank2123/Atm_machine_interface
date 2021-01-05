@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <img src='{{customer.img.url}}' alt="not found">
+    <p>First name : {{customer.first_name}}</p><br>
+    <p>Last name : {{customer.last_name}}</p><br>
+    <p>Gender : {{customer.gender.gender_type}}</p><br>
+    <p>Address : {{customer.address}}</p><br>
+    <p>Date of birth : {{customer.dob}}</p><br>
+    <p>Email : {{customer.email}}</p><br>
+    <p>Phone no : {{customer.Phone_num}}</p><br>
+  </body>
+</html>

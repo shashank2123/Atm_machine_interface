@@ -6,12 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    <p>amount 
-        <input type="text" placeholder="0000.00">
-    </p>
-    <form action="">
-        <button type="submit">yes</button>
-        <button type="submit">no</button>
+    <form action="amount_with" method="post">
+      {% csrf_token %}
+      <p>amount
+          <input type="text" placeholder="0000.00" name='amount'>
+      </p>
+        <button type="submit">Next</button>
     </form>
+<button >Exit</button>
 </body>
 </html>

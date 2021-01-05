@@ -10,4 +10,10 @@ urlpatterns =[
     path(r'withdrawAmmount',views.withdrawAmmount,name='withdrawAmmount'),
     path(r'pinredirect',views.pinchange_redirect,name='pinredirect'),
     path(r'pinchange',views.pinchange,name='pinchange'),
+    path(r'amount_with',views.amount_with,name='amount_with'),
+    path(r'fastWithdrwa',views.fastWithdrwa,name='fastWithdrwa'),
+    path(r'fastAmount',views.fastAmount,name='fastAmount'),
+    path(r'profileView',views.profileView,name='profileView'),
+    path(r'profile',views.profile,name='profile')
+
 ]

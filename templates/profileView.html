@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Profile</h1>
+    <form method='post' action='profile'>
+      {% csrf_token %}
+    {% for customer in customers %}
+    <button type="image" name="cust" alt="Login" value="{{customer.customerID}}">
+    <p>{{customer.first_name}}  {{customer.last_name}}</p>
+    {%endfor%}
+  </form>
+  </body>
+</html>
