@@ -19,6 +19,7 @@ enter your new pin</p>
         <p>confirm pin</p>
         <button type="submit">next</button>
     </form>
+<p>PIN changed on {{last_pass_change}}</p>
 <a href="{% url 'index' %}"><button >exit</button> </a>
 {% for message in messages %}
   <h1>{{ message }}<h2>

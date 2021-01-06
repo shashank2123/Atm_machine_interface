@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,HttpResponse
-from .models import cardDetails,Accounts,cardType,transcations,loan,customer
+from .models import cardDetails,Accounts,cardType,transcations,loan,customer,pin
 from django.contrib import messages
+from django.db import connection
 
 # Create your views here.
 def index(request):
@@ -17,11 +18,12 @@ def insert(request):
             return(render(request,'insert_card.html'))
     else:
         return(render(request,'insert_card.html'))
-def pin(request):
+def pin_get(request):
     if request.method=='POST':
         num=request.session.get('num')
         pin=request.POST["pass"]
-        original_pin=cardDetails.objects.all().filter(numCard=num).values_list('pin',flat=True)[0]
+        old=cardDetails.objects.get(pk=num)
+        original_pin=old.pin_id.code
         if pin==original_pin:
             return(render(request,'options.html'))
         else:
@@ -33,7 +35,8 @@ def check_balance(request):
     num=request.session.get('num')
     account_num=cardDetails.objects.all().filter(numCard=num).values_list('idAccount',flat=True)[0]
     account_balance=Accounts.objects.all().filter(pk=account_num).values_list('balance',flat=True)[0]
-    return(render(request,'checkbl.html',{'account_balance':account_balance}))
+    last_access=Accounts.objects.all().filter(pk=account_num).values_list('last_access',flat=True)[0]
+    return(render(request,'checkbl.html',{'account_balance':account_balance,'last_access':last_access}))
 
 def withdrawType(request):
     return(render(request,'withdraw.html'))
@@ -66,14 +69,14 @@ def amount_with(request):
                 if amount<=account_balance-250:
                     new_balance=account_balance-amount
                     Accounts.objects.all().filter(pk=account_num).update(balance=new_balance)
-                    trans=transcations(account_id=account,description='debit',balance=new_balance)
+                    trans=transcations(account_id=account,description='debit',balance=new_balance,amount=amount)
                     trans.save()
                     return(render(request,'collectYourMoney.html'))
                 else:
                     messages.warning(request,'Account balance is not sufficient')
                     return(render(request,'withamount.html'))
             else:
-                trans=transcations(account_id=account,description='credit',balance=account_balance)
+                trans=transcations(account_id=account,description='credit',balance=account_balance,amount=amount)
                 trans.save()
                 obj,create=loan.objects.get_or_create(pk=account_num)
                 if create:
@@ -84,14 +87,16 @@ def amount_with(request):
                     loan.objects.all().filter(pk=account_num).update(ammount=current_loan+float(amount))
                 return(render(request,'collectYourMoney.html'))
         else:
-            messages.warning(request,'limit exceded')
+            messages.error(request,'limit exceded')
             return(render(request,'withamount.html'))
     else:
         return(render(request,'withamount.html'))
 
 
 def  pinchange_redirect(request):
-    return(render(request,'pchange.html'))
+    num=request.session.get('num')
+    last_pass_change=cardDetails.objects.all().filter(numCard=num).values_list('last_pinChange',flat=True)[0]
+    return(render(request,'pchange.html',{'last_pass_change':last_pass_change}))
 
 def pinchange(request):
     if request.method=='POST':
@@ -99,9 +104,10 @@ def pinchange(request):
         re_pass=request.POST['re_pass']
         if new_pass==re_pass:
             num=request.session.get('num')
-            old_pass=cardDetails.objects.all().filter(numCard=num).values_list('pin',flat=True)[0]
+            old=cardDetails.objects.get(pk=num)
+            old_pass=old.pin_id.code
             if old_pass!=new_pass:
-                cardDetails.objects.all().filter(numCard=num).update(pin=new_pass)
+                pin.objects.all().filter(pk=old.pin_id.id).update(code=new_pass)
                 return(render(request,'successful.html'))
             else:
                 messages.error(request,'New PIN same as old PIN')
@@ -120,14 +126,18 @@ def fastAmount(request):
         num=request.session.get('num')
         amount=float(request.POST['submit'])
         account_num=cardDetails.objects.all().filter(numCard=num).values_list('idAccount',flat=True)[0]
-        account=Accounts.objects.get(pk=account_num)
-        account_balance=account.balance
-        new_balance=account_balance-amount
-        Accounts.objects.all().filter(pk=account_num).update(balance=new_balance)
-        trans=transcations(account_id=account,description='debit',balance=new_balance)
-        trans.save()
-        return(render(request,'collectYourMoney.html'))
-
+        account_balance=Accounts.objects.all().filter(pk=account_num).values_list('balance',flat=True)[0]
+        if amount<=account_balance-250:
+            account=Accounts.objects.get(pk=account_num)
+            account_balance=account.balance
+            new_balance=account_balance-amount
+            Accounts.objects.all().filter(pk=account_num).update(balance=new_balance)
+            trans=transcations(account_id=account,description='debit',balance=new_balance,amount=amount)
+            trans.save()
+            return(render(request,'collectYourMoney.html'))
+        else:
+            messages.warning(request,'Account balance is not sufficient')
+            return(render(request,'FastWithdraw.html'))
     else:
         return(render(request,'FastWithdraw.html'))
 def profileView(request):
@@ -140,3 +150,15 @@ def profile(request):
     custNum=request.POST['cust']
     customerDetails=customer.objects.get(pk=custNum)
     return render(request,'profile.html',{'customer':customerDetails})
+
+def my_custom_sql(num):
+    with connection.cursor() as cursor:
+        cursor.execute("CALL  SelectTransaction(%s)", [num])
+        row = cursor.fetchall()
+    return row
+
+def history(request):
+    num=request.session.get('num')
+    account_num=cardDetails.objects.all().filter(numCard=num).values_list('idAccount',flat=True)[0]
+    hist=tuple(reversed(my_custom_sql(account_num)))
+    return(render(request,'history.html',{'hist':hist}))

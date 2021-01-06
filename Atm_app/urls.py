@@ -4,7 +4,7 @@ from . import views
 urlpatterns =[
     path(r'',views.index,name='index'),
     path(r'insert',views.insert,name='insert'),
-    path(r'pin',views.pin,name='insert'),
+    path(r'pin',views.pin_get,name='insert'),
     path(r'check_balance',views.check_balance,name='check_balance'),
     path(r'withdraw',views.withdrawType,name='withdrawType'),
     path(r'withdrawAmmount',views.withdrawAmmount,name='withdrawAmmount'),
@@ -14,6 +14,7 @@ urlpatterns =[
     path(r'fastWithdrwa',views.fastWithdrwa,name='fastWithdrwa'),
     path(r'fastAmount',views.fastAmount,name='fastAmount'),
     path(r'profileView',views.profileView,name='profileView'),
-    path(r'profile',views.profile,name='profile')
+    path(r'profile',views.profile,name='profile'),
+    path(r'history',views.history,name='history')
 
 ]

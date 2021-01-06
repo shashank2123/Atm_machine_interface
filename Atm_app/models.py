@@ -1,4 +1,9 @@
 from django.db import models
+from datetime import datetime
+
+import datetime
+
+now = datetime.datetime.now()
 
 # Create your models here.
 class gender(models.Model):
@@ -6,7 +11,7 @@ class gender(models.Model):
 
 
 class customer(models.Model):
-    customerID=models.CharField(max_length=10,primary_key=True)
+    customerID=models.CharField(max_length=5,primary_key=True)
     first_name=models.CharField(max_length=50)
     last_name=models.CharField(max_length=30)
     address=models.TextField()
@@ -24,13 +29,16 @@ class Accounts(models.Model):
     idAccount=models.AutoField(primary_key=True)
     activated_date=models.DateField()
     status=models.ForeignKey(to=Account_status,on_delete=models.DO_NOTHING)
-    last_access=models.DateTimeField(auto_now_add=True)
+    last_access=models.DateTimeField(default=now)
     balance=models.FloatField(null=False,)
     hold_on=models.ManyToManyField(to=customer)
 
 class cardType(models.Model):
     idType=models.AutoField(primary_key=True)
     type=models.CharField(max_length=20)
+
+class pin(models.Model):
+    code=models.CharField(max_length=4)
 
 class cardDetails(models.Model):
     numCard=models.CharField(max_length=12,primary_key=True)
@@ -39,13 +47,15 @@ class cardDetails(models.Model):
     expire_year=models.IntegerField()
     expire_month=models.IntegerField()
     max_amount=models.FloatField()
-    pin=models.CharField(max_length=4)
+    pin_id=models.OneToOneField(to=pin,on_delete=models.CASCADE)
+    last_pinChange=models.DateTimeField(default=now)
 
 class transcations(models.Model):
     id=models.AutoField(primary_key=True)
     account_id=models.ForeignKey(to=Accounts,on_delete=models.DO_NOTHING)
     description=models.CharField(max_length=60)
-    tran_time=models.DateTimeField(auto_now_add=True)
+    tran_time=models.DateTimeField(default=now)
+    amount=models.FloatField()
     balance=models.FloatField()
 
 class loan(models.Model):
