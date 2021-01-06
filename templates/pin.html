@@ -20,7 +20,7 @@
   </div>
 </form>
 <div style = "position:absolute; left:20px; top:300px; background-color:yellow;">
-<a href="{%url 'index' %}"> <button>Back</button></a>
+<a href="{% url 'Atm_app:index'%}"> <button>Back</button></a>
 </div>
 {% for message in messages %}
   <h1>{{ message }}<h2>

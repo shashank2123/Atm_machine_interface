@@ -13,7 +13,7 @@
       </p>
         <button type="submit">Next</button>
     </form>
-<button >Exit</button>
+<a href="{% url 'Atm_app:options'%}" ><button>Back</button></a>
 {% for message in messages %}
   <h1>{{ message }}<h2>
 {% endfor %}

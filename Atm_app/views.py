@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.db import connection
 
 # Create your views here.
+def welcome(request):
+    return(render(request,'Welcome.html'))
 def index(request):
     return(render(request,'insert_card.html'))
 
@@ -18,6 +20,10 @@ def insert(request):
             return(render(request,'insert_card.html'))
     else:
         return(render(request,'insert_card.html'))
+
+def options(request):
+    return(render(request,'options.html'))
+
 def pin_get(request):
     if request.method=='POST':
         num=request.session.get('num')
@@ -162,3 +168,6 @@ def history(request):
     account_num=cardDetails.objects.all().filter(numCard=num).values_list('idAccount',flat=True)[0]
     hist=tuple(reversed(my_custom_sql(account_num)))
     return(render(request,'history.html',{'hist':hist}))
+
+def help(request):
+    return render(request,'help.html')
