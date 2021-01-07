@@ -82,15 +82,15 @@ def amount_with(request):
                     messages.warning(request,'Account balance is not sufficient')
                     return(render(request,'withamount.html'))
             else:
-                trans=transcations(account_id=account,description='credit',balance=account_balance,amount=amount)
-                trans.save()
-                obj,create=loan.objects.get_or_create(pk=account_num)
-                if create:
+                try:
                     obj=loan(pk=account_num,ammount=amount)
                     obj.save()
-                else:
+                except:
+                    obj=loan.objects.get(pk=account_num)
                     current_loan=obj.ammount
                     loan.objects.all().filter(pk=account_num).update(ammount=current_loan+float(amount))
+                trans=transcations(account_id=account,description='credit',balance=account_balance,amount=amount)
+                trans.save()
                 return(render(request,'collectYourMoney.html'))
         else:
             messages.error(request,'limit exceded')
