@@ -39,3 +39,11 @@ button:hover{
 a{
     margin: 50px;
 }
+h1{
+    color: white;
+    text-transform: capitalize;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    
+}
