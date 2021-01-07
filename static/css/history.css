@@ -1,0 +1,52 @@
+table{
+color: rgb(47, 92, 216);
+border-color: rgb(255, 71, 71);
+background-color:cadetblue;
+margin: 10px 500px 10px 500px;
+font-size: 30px;
+height: 80px;
+box-shadow: -10px 10px 20px rgba(240, 226, 226, 0.3);
+
+}
+td{
+    opacity: 2px;
+}
+td:hover
+{
+    opacity:1px;
+}
+table:hover{
+    background-color: rgb(72, 101, 155);
+    color: black;
+    
+}
+body{
+    background-color: rgb(19, 11, 11);
+    
+}
+button{
+    background-color: cadetblue;
+    box-sizing: border-box;
+    border: blue;
+    opacity:95%;
+    box-shadow: -10px 10px 10px rgba(207, 189, 189, 0.3);
+    border-radius: 2px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    color:white;
+    padding: 10px;
+    margin:80px 80px;
+    transition: 1s ease-in-out;
+}
+button:hover{
+    transform: scale(1.3);
+    color: black;
+}
+h1{
+    color: white;
+    text-transform: capitalize;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    
+}
