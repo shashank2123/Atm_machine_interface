@@ -1,15 +1,17 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ATM</title>
+    <link rel="stylesheet" href="{% static 'css/checkbal.css' %}">
 </head>
 <body>
     <h1>check balance</h1>
     <div>
         <p>your balance in account </p>
-        <p>{{account_balance}}</p><br>
+        <strong><p style="color : red;">{{account_balance}}</p></strong><br>
         <p>Last Account acceced on {{last_access}}</p>
     </div>
 <a href="{% url 'Atm_app:options'%}" ><button>Back</button></a>

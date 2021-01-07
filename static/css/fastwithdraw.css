@@ -29,7 +29,7 @@ transition: 1s ease-in-out;
 form:hover{
     transform: scale(1.1);
     border-radius: 15px;
-    
+
 }
 button:hover{
     color: black;
@@ -40,10 +40,10 @@ a{
     margin: 50px;
 }
 h1{
-    color: white;
+    color: red;
     text-transform: capitalize;
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
     font-size: 40px;
-    
+
 }
