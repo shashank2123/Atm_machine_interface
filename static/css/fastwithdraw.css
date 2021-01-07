@@ -1,0 +1,41 @@
+button{
+    background-color: cadetblue;
+    box-sizing: border-box;
+    border: blue;
+    opacity:95%;
+    box-shadow: -10px 10px 10px rgba(207, 189, 189, 0.3);
+    border-radius: 2px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    color:white;
+    padding: 10px;
+    margin: 10px 190px 10px 190px;
+    transition: 1s ease-in-out;
+}
+body{
+    background-color: black;
+}
+
+form{
+    background-color: rgb(163, 241, 241);
+margin: 120px 280px 30px 280px;
+box-sizing: border-box;
+border: blue;
+border-radius: 10px;
+opacity:95%;
+box-shadow: -10px 10px 20px rgba(240, 226, 226, 0.3);
+transition: 1s ease-in-out;
+}
+form:hover{
+    transform: scale(1.1);
+    border-radius: 15px;
+    
+}
+button:hover{
+    color: black;
+    transform: scale(1.1);
+    border-radius: 7px;
+}
+a{
+    margin: 50px;
+}

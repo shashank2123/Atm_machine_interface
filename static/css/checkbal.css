@@ -1,0 +1,46 @@
+h1{
+    color: white;
+    text-transform: capitalize;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    
+}
+div{
+    background-color: cadetblue;
+    color: white;
+    text-transform: capitalize;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    
+    margin-top: 50px;
+    margin-left: 350px;
+    margin-right: 350px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+   
+    box-sizing: border-box;
+    border: blue;
+    opacity:95%;
+    box-shadow: -10px 10px 10px rgba(207, 189, 189, 0.3);
+
+
+}
+button{
+    background-color: cadetblue;
+    box-sizing: border-box;
+    border: blue;
+    opacity:95%;
+    box-shadow: -10px 10px 10px rgba(207, 189, 189, 0.3);
+    border-radius: 2px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    color:white;
+    padding: 10px;
+    margin-left: 80px;
+}
+body{
+    background-color: black;
+
+}
