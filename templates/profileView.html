@@ -3,17 +3,20 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>ATM</title>
+    <link rel="stylesheet" href="{% static 'css/profileview.css' %}">
   </head>
   <body>
     <h1>Profile</h1>
+    {% for customer in customers %}
+    <div>
     <form method='post' action='profile'>
       {% csrf_token %}
-    {% for customer in customers %}
-    <button type="image" name="cust" alt="Login" value="{{customer.customerID}}">
+    <button type="image" name="cust" alt="Login" value="{{customer.customerID}}"></button>
+    </form>
     <p>{{customer.first_name}}  {{customer.last_name}}</p>
+  </div>
     {%endfor%}
-  </form>
   <a href="{% url 'Atm_app:options'%}" ><button>Back</button></a>
   </body>
 </html>

@@ -58,20 +58,17 @@ button:hover{
     display: inline-block;
     float: right;
 }
-div{
-    text-align: center;
-
-}
 #b7{
-    width: 10%;
-    display: inline-block;
-    float: right;
-}
-#b8{
-    width: 10%;
     display: inline-block;
     float: left;
 }
+#b8{
+    display: inline-block;
+    float: right;
+}
+div{
+    text-align: center;
+  }
 body{
     background-color: black;
 }

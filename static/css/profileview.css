@@ -5,7 +5,7 @@ button{
     box-sizing: border-box;
     border: blue;
     opacity:95%;
-    
+
     border-radius: 2px;
     font-family: 'Times New Roman', Times, serif;
     font-size: 25px;
@@ -13,7 +13,7 @@ button{
     padding: 10px;
     box-shadow: 0 0 10px black;
     margin-top: 20px;
-   
+
 }
 form button{
     background-image: url("/static/images/default_profile.jpg");
@@ -46,7 +46,9 @@ div{
     box-shadow: 0 0 10px black;
     padding: 20px;
 margin: 10px auto 10px auto;
+    background-color: withe;
 }
 body{
     text-align: center;
+    background: lightblue;
 }
