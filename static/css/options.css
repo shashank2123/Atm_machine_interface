@@ -22,7 +22,7 @@ button{
     font-size: 27px;
     border-radius: 10px;
     float: left;
-    
+
 
 }
 button:hover{
@@ -38,7 +38,7 @@ button:hover{
 
 #b2{
     display: inline-block;
-    float: left;
+    float: right;
 }
 
 #b3{
@@ -47,7 +47,7 @@ button:hover{
 }
 #b4{
     display: inline-block;
-    float: left;
+    float: right;
 }
 #b5{
     display: inline-block;
@@ -56,18 +56,21 @@ button:hover{
 }
 #b6{
     display: inline-block;
-    float: left;
+    float: right;
 }
 div{
-    text-align: center; 
-    
+    text-align: center;
+
 }
-#exit{
-width: 30%;
-clear: left;
+#b7{
+    width: 10%;
+    display: inline-block;
+    float: right;
 }
-#help{
-    width: 30%;
+#b8{
+    width: 10%;
+    display: inline-block;
+    float: left;
 }
 body{
     background-color: black;

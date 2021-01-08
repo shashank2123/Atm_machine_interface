@@ -2,25 +2,23 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATM</title>
     <link rel="stylesheet" href="{% static 'css/credit.css' %}">
 </head>
 <body>
 <form id="card" method="post" action="insert">
   {% csrf_token %}
-    <div class="container">
+  <div class="container">
         <h2>card number</h2>
-<input type="text" placeholder="xxxx-xxxx-xxxx" name='cardnum'>
- </div>
- <div style = "margin:10px-550px-10px-550px;">
- <input type="submit">
- </div>
+        <input type="text" placeholder="xxxx-xxxx-xxxx" name='cardnum' required/>
+<input type="submit">
 </form>
-<a href="{% url 'Atm_app:welcome' %}" ><button>Back</button></a>
+<a href="{% url 'Atm_app:welcome' %}" ><button >Back</button></a>
+</div>
 {% for message in messages %}
-  <h1>{{ message }}<h2>
+  <center><strong><h1 style="color : red;">{{ message }}</h1></strong></center>
 {% endfor %}
 </body>
 </html>

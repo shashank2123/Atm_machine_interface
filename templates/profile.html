@@ -3,10 +3,13 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>ATM</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
   </head>
   <body>
-    <img src='{{customer.img.url}}' alt="not found">
+  <div class="profile">
+    <img src='{{customer.img.url}}' alt="not found" class='img'>
+    <div class="container">
     <p>First name : {{customer.first_name}}</p><br>
     <p>Last name : {{customer.last_name}}</p><br>
     <p>Gender : {{customer.gender.gender_type}}</p><br>
@@ -14,6 +17,8 @@
     <p>Date of birth : {{customer.dob}}</p><br>
     <p>Email : {{customer.email}}</p><br>
     <p>Phone no : {{customer.Phone_num}}</p><br>
+  </div>
     <a href="{% url 'Atm_app:profileView'%}" ><button>Back</button></a>
+  </div>
   </body>
 </html>

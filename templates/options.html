@@ -15,14 +15,11 @@
         <a  href="{% url 'Atm_app:fastWithdrwa' %}" ><button id="b1">Fast withdraw</button></a>
         <a  href="{% url 'Atm_app:withdrawType' %}" ><button id="b2">Withdraw</button></a>
         <a  href="{% url 'Atm_app:check_balance' %}" ><button id="b3">Balance enquiry</button></a>
-        <a  href="{% url 'Atm_app:history' %}" ><button id="b5">Transactions</button></a>
-        <a  href="{% url 'Atm_app:pinredirect' %}" ><button id="b6">Change PIN</button></a>
-        <a  href="{% url 'Atm_app:profileView' %}" ><button id="b4">Profile</button></a>
-        <div id="exit">
-            <a href="{% url 'Atm_app:welcome' %}" ><button>Back</button></a>
-        </div>
-        <a  href="{% url 'Atm_app:help' %}" ><button>Help</button></a>
+        <a  href="{% url 'Atm_app:history' %}" ><button id="b4">Transactions</button></a>
+        <a  href="{% url 'Atm_app:pinredirect' %}" ><button id="b5">Change PIN</button></a>
+        <a  href="{% url 'Atm_app:profileView' %}" ><button id="b6">Profile</button></a>
     </div>
-
+      <a href="{% url 'Atm_app:welcome' %}" ><button id="b7">Back</button></a>
+      <a href="{% url 'Atm_app:help' %}" ><button id="b8">Help</button></a>
 </body>
 </html>

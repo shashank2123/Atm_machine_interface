@@ -1,29 +1,44 @@
 <!DOCTYPE html>
+{%load static %}
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>ATM</title>
+    <link rel="stylesheet" href="{% static 'css/history.css' %}">
   </head>
   <body>
-    <h1>Transaction Summary</h1>
-<table border="2">
-  <tr>
-    <th>ID</th>
-    <th>Type</th>
-    <th>Time</th>
-    <th>Amount</th>
-    <th>Balance</th>
-  </tr>
-{% for row in hist%}
-  <tr>
-    <td>{{row.0}}</td>
-    <td>{{row.1}}</td>
-    <td>{{row.2}}</td>
-    <td>{{row.3}}</td>
-    <td>{{row.4}}</td>
-  </tr>
-{%endfor%}
-</table>
+<section>
+  <!--for demo wrap-->
+  <h1>Transaction summary</h1>
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Time</th>
+          <th>Amount</th>
+          <th>Balance</th>
+        </tr>
+      </thead>
+    </table>
+</div>
+<div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        {% for row in hist%}
+          <tr>
+            <td>{{row.0}}</td>
+            <td>{{row.1}}</td>
+            <td>{{row.2}}</td>
+            <td>{{row.3}}</td>
+            <td>{{row.4}}</td>
+          </tr>
+        {%endfor%}
+</tbody>
+ </table>
+ </div>
+</section>
 <a href="{% url 'Atm_app:options'%}" ><button>Back</button></a>
   </body>
 </html>

@@ -1,19 +1,20 @@
 body{
-    background-color: black;
+    background-image: url("../images/Atm_bg.jpg");
+    background-size: cover;
 }
 h1{
-   
-    color: white;
+
+    color: black;
     text-transform: capitalize;
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 60px;
-    
+    font-size: 80px;
+
     margin-top: 100px;
-    
+
 }
 button{
-    background-color: cadetblue;
+    background-color: black;
     box-sizing: border-box;
     border: blue;
     opacity:95%;
@@ -23,5 +24,6 @@ button{
     font-size: 35px;
     color:white;
     padding: 10px;
-    margin-left: 80px;
+    margin-left: 725px;
+    margin-top: 150px;
 }

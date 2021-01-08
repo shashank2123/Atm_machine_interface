@@ -1,24 +1,24 @@
 .profile{
     font-family: 'Times New Roman', Times, serif;
     text-align: center;
-    max-width: 350px;
+    max-width: 450px;
     box-shadow: 0 0 10px black;
     padding: 20px;
-margin: 10px auto 10px auto;
+    margin: 10px auto 10px auto;
+    background-color: withe;
 }
 .img{
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
     margin: 0 auto 20px auto;
 display: block;
 }
 .content{
-    font-size: 13px;
+    font-size: 25px;
     font-weight: bold;
     display: block;
-    align-items: center;
+    align-items: left;
     justify-content:left;
 }
 body{
@@ -29,11 +29,14 @@ button{
         box-sizing: border-box;
         border: blue;
         opacity:95%;
-        
+
         border-radius: 2px;
         font-family: 'Times New Roman', Times, serif;
         font-size: 25px;
         color:rgb(22, 19, 19);
         padding: 10px;
         box-shadow: 0 0 10px black;
+}
+body{
+  background: lightblue;
 }

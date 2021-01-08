@@ -1,28 +1,26 @@
 <!DOCTYPE html>
+{% load static%}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ATM</title>
+    <link rel="stylesheet" href="{% static 'css/pchange.css' %}">
 </head>
 <body>
     <h1>pin change</h1>
 <form action="pinchange" method="POST">
   {% csrf_token %}
-    <p>
-enter your new pin</p>
-<input type="password" placeholder="xxxx" name='new_pass'  maxlength="4" minlength="4" pattern="\d{4}" required/>
-<p> Re-Enter
-<input type="password" placeholder="xxxx" name='re_pass' maxlength="4" minlength="4" pattern="\d{4}" required/ >
-
-    </p>
-        <p>confirm pin</p>
-        <button type="submit">next</button>
-    </form>
-<p>PIN changed on {{last_pass_change}}</p>
+ <label >Enter your New PIN</label>
+<input type="password" placeholder="xxxx" name='new_pass'  maxlength="4" minlength="4" pattern="\d{4}" required/><br>
+<label >Renter your PIN</label>
+<input type="password" placeholder="xxxx" name='re_pass' maxlength="4" minlength="4" pattern="\d{4}" required/ ><br>
+    <button type="submit">next</button>
+  </form>
+<p style="color : white;">PIN changed on {{last_pass_change}}</p>
 <a href="{% url 'Atm_app:options'%}" ><button>Back</button></a>
 {% for message in messages %}
-  <h1>{{ message }}<h2>
+  <h1 style="color : red;">{{ message }}<h2>
 {% endfor %}
 </body>
 </html>

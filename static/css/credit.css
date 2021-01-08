@@ -6,7 +6,7 @@ body{
 input{
 size: 100px;
 }
-h2{
+h1{
     font-size: 50px;
     font-family: 'Times New Roman', Times, serif;
     text-transform: capitalize;
@@ -31,4 +31,7 @@ div{
 div:hover{
     background-color: rgb(155, 207, 207);
    transform: scale(1.5);
+}
+div button{
+    display:inline-block;
 }
