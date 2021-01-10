@@ -13,7 +13,7 @@
 <form method="post" action='pin'>
   {% csrf_token %}
   <div class="container">
-    <input type="password" name='pass'><br>
+    <input type="password" name='pass' maxlength="4" minlength="4" pattern="\d{4}"><br>
 
   <input style="background-color: rgb(117, 202, 202);font-size: 45px;" type="submit">
 </form>

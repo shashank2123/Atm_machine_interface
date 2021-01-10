@@ -11,7 +11,7 @@
     <form action="amount_with" method="post">
       {% csrf_token %}
       <p>amount
-          <input type="text" placeholder="0000.00" name='amount'>
+          <input type="text" placeholder="0000.00" name='amount' pattern="[0-9]+(\.[0-9]{1,2})?%?">
       </p>
         <button type="submit">Next</button>
     </form>

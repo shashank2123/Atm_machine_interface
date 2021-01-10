@@ -61,8 +61,3 @@ class transcations(models.Model):
 class loan(models.Model):
     accound_id=models.OneToOneField(to=Accounts,on_delete=models.CASCADE,primary_key=True)
     ammount=models.FloatField()
-
-class login_trace(models.Model):
-    card_num=models.ForeignKey(to=cardDetails,on_delete=models.DO_NOTHING)
-    date=models.DateField(default=today)
-    time=models.TimeField(default=time)

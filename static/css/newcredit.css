@@ -46,8 +46,8 @@ button{
     font-size: 30px;
     color:rgb(14, 12, 12);
     padding: 10px;
-    margin-left: 200px;
     transition: 1s ease-in-out;
+    float: left;
 }
 button:hover{
     background-color: rgb(155, 207, 207);

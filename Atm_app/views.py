@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,HttpResponse
-from .models import cardDetails,Accounts,cardType,transcations,loan,customer,pin,login_trace
+from .models import cardDetails,Accounts,cardType,transcations,loan,customer,pin
 from django.contrib import messages
 from django.db import connection
 import plotly.express as px
@@ -21,8 +21,6 @@ def insert(request):
         request.session['num']=num
         if cardDetails.objects.filter(numCard=num).exists():
             card=cardDetails.objects.get(numCard=num)
-            obj=login_trace(card_num=card)
-            obj.save()
             return(render(request,'pin.html'))
         else:
             messages.warning(request,"Invalid card number")
