@@ -20,6 +20,6 @@ urlpatterns =[
     path(r'profileView',views.profileView,name='profileView'),
     path(r'profile',views.profile,name='profile'),
     path(r'history',views.history,name='history'),
-    path(r'help',views.help,name='help'),
+    path(r'generate_report',views.generate_report,name='generate_report'),
 
 ]

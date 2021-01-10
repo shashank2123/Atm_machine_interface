@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ATM</title>
+  </head>
+  <body>
+    <img src="{% static '/images/fig1.jpeg' %}" alt='not available'>
+    <p>{{text1}}</p>
+    <img src="{% static '/images/fig2.jpeg' %}" alt='not available'>
+    <p>{{text2}}</p>
+    <a href="{% url 'Atm_app:options' %}"<button>Back</button></a>
+  </body>
+</html>

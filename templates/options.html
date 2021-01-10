@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/options.css' %}">
+    <link rel="stylesheet" href="{% static 'css/newoptions.css' %}">
     <title>ATM</title>
     <h1>ATM</h1>
 </head>
@@ -19,7 +19,7 @@
         <a  href="{% url 'Atm_app:pinredirect' %}" ><button id="b5">Change PIN</button></a>
         <a  href="{% url 'Atm_app:profileView' %}" ><button id="b6">Profile</button></a>
         <a href="{% url 'Atm_app:welcome' %}" ><button id="b7">Back</button></a>
-        <a href="{% url 'Atm_app:help' %}" ><button id="b8">Help</button></a>
+        <a href="{% url 'Atm_app:generate_report' %}" ><button id="b8">Reports</button></a>
     </div>
 </body>
 </html>

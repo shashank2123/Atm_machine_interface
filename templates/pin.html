@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PIN</title>
-    <link rel="stylesheet" href="{% static 'css/pin.css'%}">
+    <link rel="stylesheet" href="/static/css/newpin.css">
 
 </head>
 <body>
@@ -14,14 +14,11 @@
   {% csrf_token %}
   <div class="container">
     <input type="password" name='pass'><br>
-  </div>
-  <div style = "margin:10px 550px 5px 550px;">
-  <input type="submit">
-  </div>
+
+  <input style="background-color: rgb(117, 202, 202);font-size: 45px;" type="submit">
 </form>
-<div style = "margin:0px 550px 0px 550px;">
-<a href="{% url 'Atm_app:index'%}"> <button>Back</button></a>
 </div>
+<a href="{% url 'Atm_app:index'%}"> <button>Back</button></a>
 {% for message in messages %}
   <h1>{{ message }}<h2>
 {% endfor %}
