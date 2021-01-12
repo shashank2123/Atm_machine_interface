@@ -1,15 +1,25 @@
+
 img{
     width: 500px;
     height: 300px;
     object-fit: cover;
-    margin: 0 auto 20px auto;
+    max:10px;
 display:block;
-box-shadow: 0 0 10px black;
+box-shadow: 0 0 10px white;
 transition:  1s ease-in-out;
+text-align: left;
    
 }
-body{background-color:white;
-    text-align: center;
+p{
+    text-align: right;
+color: white;
+font-weight: bold;
+font-size: 35px;
+}
+body{
+    background-color: black;
+    background-size: cover;
+
 }
 button{
 
@@ -23,7 +33,8 @@ button{
         font-size: 25px;
         color:rgb(22, 19, 19);
         padding: 10px;
-        box-shadow: 0 0 10px black;
+        box-shadow: 0 0 10px white;
+        
 
 }
 img:hover{
