@@ -1,0 +1,31 @@
+img{
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
+    margin: 0 auto 20px auto;
+display:block;
+box-shadow: 0 0 10px black;
+transition:  1s ease-in-out;
+   
+}
+body{background-color:white;
+    text-align: center;
+}
+button{
+
+        background-color: white;
+        box-sizing: border-box;
+        border: blue;
+        opacity:95%;
+        
+        border-radius: 2px;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 25px;
+        color:rgb(22, 19, 19);
+        padding: 10px;
+        box-shadow: 0 0 10px black;
+
+}
+img:hover{
+    transform: scale(1.1);
+}
