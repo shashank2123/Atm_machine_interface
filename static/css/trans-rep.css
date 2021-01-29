@@ -1,17 +1,6 @@
 
-img{
-    width: 500px;
-    height: 300px;
-    object-fit: cover;
-    max:10px;
-display:block;
-box-shadow: 0 0 10px white;
-transition:  1s ease-in-out;
-text-align: left;
-   
-}
 p{
-    text-align: right;
+    text-align: center;
 color: white;
 font-weight: bold;
 font-size: 35px;
@@ -27,14 +16,14 @@ button{
         box-sizing: border-box;
         border: blue;
         opacity:95%;
-        
+
         border-radius: 2px;
         font-family: 'Times New Roman', Times, serif;
         font-size: 25px;
         color:rgb(22, 19, 19);
         padding: 10px;
         box-shadow: 0 0 10px white;
-        
+
 
 }
 img:hover{

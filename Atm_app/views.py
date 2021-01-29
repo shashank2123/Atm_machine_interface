@@ -2,13 +2,12 @@ from django.shortcuts import render,redirect,HttpResponse
 from .models import cardDetails,Accounts,cardType,transcations,loan,customer,pin
 from django.contrib import messages
 from django.db import connection
-import plotly.express as px
 import numpy as np
 from Atm_min_project.settings import STATIC_DIR
 import os
 from datetime import datetime,timedelta
-import io
-import PIL.Image as Image
+import matplotlib.pyplot as plt
+import seaborn as sns
 # Create your views here.
 def welcome(request):
     return(render(request,'Welcome.html'))
@@ -183,48 +182,47 @@ def generate_report(request):
     WHERE tran_time BETWEEN DATE_SUB(NOW(), INTERVAL 1 DAY) AND NOW()
     GROUP BY account_id_id"""
     transcations_data=transcations.objects.raw(query1)
-    x=[]
-    y=[]
-    for obj in transcations_data:
-        x.append(obj.account_id_id)
-        y.append(obj.amount)
-    x=np.array(x)
-    y=np.array(y)
-    high=y.argmax()
-    low=y.argmin()
     high_time=datetime.now()
     low_time=high_time-timedelta(days=1)
     high_time=high_time.strftime("%m/%d/%Y, %H:%M:%S")
     low_time=low_time.strftime("%m/%d/%Y, %H:%M:%S")
-    text1="""In the peroid of {}-{}, Account ID {} has highest transaction amount and Account ID {}
+    if len(transcations_data)==0:
+        text="Transactions not happened on {} - {} ".format(high_time,low_time)
+        return(render(request,'noTransaction.html',{'text':text}))
+    else:
+        x=[]
+        y=[]
+        for obj in transcations_data:
+            x.append(obj.account_id_id)
+            y.append(obj.amount)
+        x=np.array(x)
+        y=np.array(y)
+        high=y.argmax()
+        low=y.argmin()
+        text1="""In the peroid of {}-{}, Account ID {} has highest transaction amount and Account ID {}
             lowest transaction amount """.format(low_time,high_time,x[high],x[low])
-    fig1 = px.bar(x=x, y = y ,labels=dict(x="Account ID", y="Amount"),text=y)
-    fig1.update_xaxes(type='category')
-    fig1.update_traces(texttemplate='%{text:.2s}', textposition='outside')
-    fig1.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
-    fig1.write_image(os.path.join(STATIC_DIR,"images","fig1.jpeg"))
-
-    query2="""SELECT id,description,SUM(amount) as amount
-    FROM atm_app_transcations
-    WHERE tran_time BETWEEN DATE_SUB(NOW(), INTERVAL 1 DAY) AND NOW()
-    GROUP BY description"""
-    transcations_data=transcations.objects.raw(query2)
-    x=[]
-    y=[]
-    for obj in transcations_data:
-        x.append(obj.description)
-        y.append(obj.amount)
-    x=np.array(x)
-    y=np.array(y)
-    high_time=datetime.now()
-    low_time=high_time-timedelta(days=1)
-    high_time=high_time.strftime("%m/%d/%Y, %H:%M:%S")
-    low_time=low_time.strftime("%m/%d/%Y, %H:%M:%S")
-    text2="""In the peroid of {}-{},Total {} amount is {}
+        fig1 = plt.figure()
+        sns.barplot(x=x,y=y)
+        plt.ylabel('Amount')
+        plt.xlabel('Acount ID')
+        fig1.savefig(os.path.join(STATIC_DIR,"images","fig1.jpeg"))
+        query2="""SELECT id,description,SUM(amount) as amount
+                FROM atm_app_transcations
+                WHERE tran_time BETWEEN DATE_SUB(NOW(), INTERVAL 1 DAY) AND NOW()
+                GROUP BY description"""
+        transcations_data=transcations.objects.raw(query2)
+        dict={'credit':0,'debit':0}
+        for obj in transcations_data:
+            dict[obj.description]=obj.amount
+        x=list(dict.keys())
+        y=list(dict.values())
+        explode = (0, 0.1)
+        colors = ['#99ff99','#66b3ff']
+        fig2, ax1 = plt.subplots()
+        ax1.pie(y, labels = x,explode=explode,colors=colors,autopct='%1.1f%%',shadow=True, startangle=90)
+        ax1.axis('equal')
+        plt.tight_layout()
+        fig2.savefig(os.path.join(STATIC_DIR,"images","fig2.jpeg"))
+        text2=text2="""In the peroid of {}-{},Total {} amount is {}
             and {} amount is {}. """.format(low_time,high_time,x[0],y[0],x[1],y[1])
-    fig2 = px.bar(x=x, y = y ,labels=dict(x="Type", y="Amount"),text=y)
-    fig2.update_xaxes(type='category')
-    fig2.update_traces(texttemplate='%{text:.2s}', textposition='outside')
-    fig2.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
-    fig2.write_image(os.path.join(STATIC_DIR,"images","fig2.jpeg"))
-    return render(request,'transactions_report.html',{'text1':text1,'text2':text2})
+        return render(request,'transactions_report.html',{'text1':text1,'text2':text2})
